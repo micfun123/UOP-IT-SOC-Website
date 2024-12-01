@@ -1374,7 +1374,7 @@ p{
 }
 
 ::selection{
-  background-color: rgb(254 166 2 / 0.4);
+  background-color: rgb(70 20 95/ 0.4);
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
