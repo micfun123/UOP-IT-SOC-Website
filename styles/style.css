@@ -390,8 +390,8 @@ ul {
 }
 
 section {
-	padding-top: 100px;
-	padding-bottom: 100px;
+	/* padding-top: 100px;
+	padding-bottom: 100px; */
 	overflow: hidden;
 }
 
@@ -1946,9 +1946,9 @@ textarea.form-control {
 /* Custom, iPhone Retina */
 @media only screen and (min-width: 320px) and (max-width: 479px) {
 
-.header .navbar {
+/* .header .navbar {
 	top: 0;
-}
+} */
 
 .navbar-toggle .icon-bar {
 	background-color: #f5af00;
@@ -2033,10 +2033,10 @@ textarea.form-control {
 	margin-left: auto;
 	text-align: center;
 }
-
+/* 
 .header .navbar .logo {
 	float: left;
-}
+} */
 
 .navbar-toggle {
 	border-color: #f5af00;
@@ -2053,6 +2053,7 @@ textarea.form-control {
 
 .navbar-fixed-top .navbar-collapse {
 	overflow: scroll !important;
+	position: fixed !important;
 }
 
 .navbar-collapse.collapse {
@@ -3458,4 +3459,3 @@ li a:hover,
 	font-size: 60px;
 }
 }
-
