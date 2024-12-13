@@ -58,7 +58,7 @@ Please note that by participating in this project, you agree to abide by our [Co
 
 ## Get in Touch
 
-If you have any questions, concerns, or just want to say hi, feel free to reach out to us [via email](mailto:itsoc@upsu.net.).
+If you have any questions, concerns, or just want to say hi, feel free to reach out to us [via email](mailto:itsoc@upsu.net.) or over [Discord](https://discord.gg/nhkV4dAUnQ).
 
 Thank you for contributing to UoP-IT-Soc's Website! 🚀
 
