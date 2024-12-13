@@ -54,7 +54,7 @@ Before submitting a pull request, make sure that your changes pass any existing 
 
 ## Code of Conduct
 
-Please note that by participating in this project, you agree to abide by our [Code of Conduct](https://github.com/UoP-IT-Soc/website/blob/main/CODE_OF_CONDUCT.md). We expect all contributors to be respectful and considerate.
+Please note that by participating in this project, you agree to abide by our [Code of Conduct](https://github.com/UoP-IT-Soc/website/blob/main/.github/CODE_OF_CONDUCT.md). We expect all contributors to be respectful and considerate.
 
 ## Get in Touch
 
