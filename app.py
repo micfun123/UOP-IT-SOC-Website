@@ -25,5 +25,11 @@ def index():
     events = events[:3]
     return render_template('index.html', events=events)
 
+@app.route('/members')
+def members():
+    with open('members.json', 'r') as file:
+        members = json.load(file)
+    return render_template('members.html', members=members)
+
 if __name__ == '__main__':
     app.run(debug=True)
