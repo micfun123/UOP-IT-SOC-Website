@@ -3,7 +3,7 @@ import json
 import os
 import dotenv
 from datetime import datetime
-from models import db, User
+from models import db, User, News, NewsComment, NewsLetter
 import random
 import string
 import bcrypt
@@ -146,6 +146,13 @@ def admin_dashboard():
     members = User.query.all()
     return render_template('admin.html', members=members)
 
+
+@app.route('/news/<int:pagenum>')
+def news(pagenum):
+    articles = News.query.all()
+    articles = articles[::-1]
+    articles = articles[(pagenum-1)*5:pagenum*5]
+    return render_template('news.html', articles=articles, pagenum=pagenum)
 
 
 

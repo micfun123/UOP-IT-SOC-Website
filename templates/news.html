@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% include 'header.html' %}
+  <body>
+    <section id="Members" class="py-20 bg-gray-50">
+      <div class="container 2xl:px-52">
+        <div class="text-center max-w-2xl mx-auto mb-10">
+          <h1 class="text-4xl font-bold mb-3">News</h1>
+          <p class="text-gray-600">Whats new with the IT SOC UOP find out here.</p>
+        </div>
+        <div class="flex flex-wrap justify-center">
+          {% if articles %}
+          {% else %}
+            <p class="text-gray-500 text-center mt-10">No news yet. Check back later!</p>
+          {% endif %}
+        </div>
+      </div>
+      <!-- next and previous buttons -->
+      <div class="flex justify-center mt-10">
+        <a href="/news/{{ pagenum-1 }}" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-l-md">Previous</a>
+        <a href="/news/{{ pagenum+1 }}" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-r-md">Next</a>
+      </div>
+
+      
+    </section>
+  </body>
+  {% include 'footer.html' %}
+</html>
