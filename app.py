@@ -1,9 +1,9 @@
-from flask import Flask, request, render_template, redirect, url_for, session, flash
+from flask import Flask, request, render_template, redirect, url_for, session, flash, Response
 import json
 import os
 import dotenv
 from datetime import datetime
-from models import db, User
+from models import db, User, News, NewsComment, NewsLetter
 import random
 import string
 import bcrypt
@@ -147,6 +147,71 @@ def admin_dashboard():
     return render_template('admin.html', members=members)
 
 
+@app.route('/news/<int:pagenum>')
+def news(pagenum):
+    articles = News.query.order_by(News.date_posted.desc()).all()
+    
+    # Pagination logic: limit articles per page
+    per_page = 5
+    total_articles = len(articles)
+    start_idx = (pagenum - 1) * per_page
+    end_idx = start_idx + per_page
+    articles = articles[start_idx:end_idx]
+
+    # Handle edge case where page number exceeds available pages
+    if pagenum < 1 or start_idx >= total_articles:
+        return redirect('/news/1')
+
+    return render_template('news.html', articles=articles, pagenum=pagenum)
+
+
+@app.route('/rss')
+def rss():
+    articles = News.query.all()
+    articles = articles[::-1]
+    return Response(render_template('rss.xml', articles=articles), mimetype='text/xml')
+
+@app.route('/article/<int:article_id>')
+def article(article_id):
+    article = News.query.get(article_id)
+    return render_template('article.html', article=article)
+
+@app.route('/manage_news', methods=['GET', 'POST'])
+@login_required
+def manage_news():
+    if request.method == 'POST':
+        action = request.form.get('action')
+
+        # Add a new article
+        if action == 'add':
+            title = request.form.get('title')
+            content = request.form.get('content')
+            user_id = session['user_id']
+
+            new_article = News(title=title, content=content, date_posted=datetime.now(), user_id=user_id)
+            try:
+                db.session.add(new_article)
+                db.session.commit()
+                flash('Article added successfully!', 'success')
+            except Exception as e:
+                db.session.rollback()
+                flash(f'Error: {str(e)}', 'danger')
+
+        # Delete an article
+        elif action == 'delete':
+            article_id = request.form.get('article_id')
+            article = News.query.get(article_id)
+            if article:
+                try:
+                    db.session.delete(article)
+                    db.session.commit()
+                    flash('Article deleted successfully!', 'success')
+                except Exception as e:
+                    db.session.rollback()
+                    flash(f'Error: {str(e)}', 'danger')
+
+    articles = News.query.order_by(News.date_posted.desc()).all()
+    return render_template('manage_news.html', articles=articles)
 
 
 if __name__ == '__main__':

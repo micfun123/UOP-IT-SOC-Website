@@ -23,3 +23,31 @@ class User(db.Model):
     
     def __repr__(self): 
         return f'<User {self.name}>'
+
+
+class News(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
+    title = db.Column(db.String(120), nullable=False)
+    content = db.Column(db.String(120), nullable=False)
+    date_posted = db.Column(db.DateTime, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    
+    def __repr__(self):
+        return f'<News {self.title}>'
+    
+class NewsComment(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
+    content = db.Column(db.String(120), nullable=False)
+    date_posted = db.Column(db.DateTime, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    news_id = db.Column(db.Integer, db.ForeignKey('news.id'), nullable=False)
+    
+    def __repr__(self):
+        return f'<NewsComment {self.content}>'
+    
+class NewsLetter(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
+    email = db.Column(db.String(120), nullable=False)
+    
+    def __repr__(self):
+        return f'<NewsLetter {self.email}>'
