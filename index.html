@@ -7,7 +7,7 @@
     <!-- <section id="hero" class="section hero hero-12 text-center bg-overlay bg-overlay-dark bg-parallax fullscreen"> -->
     <section id="hero" class="section text-center no-p-top">
       <div class="bg-section">
-        <img src="/static/images/Banner.png" alt="Background" />
+        <img src="images/Banner.png" alt="Background" />
       </div>
       <div class="pos-vertical-center">
         <div class="container">
@@ -58,7 +58,7 @@
                     <!-- Someone please for the love of god and all that is holy change this -->
                      <!-- I can't find any better images right now :(-->
                   <img
-                    src="/static/images/IT_SOC.png"
+                    src="images/IT_SOC.png"
                     alt="abt-img3.jpg"
                     itemprop="image"
                   />
@@ -70,56 +70,190 @@
       </div>
     </section>
 
-    <!-- Events Section -->
+    <!-- Events -->
     <section id="events">
       <div class="gap">
         <div class="container">
           <div class="sec-tl text-center">
-            <h2>
+            <h2 itemprop="headline">
               Upcoming <span class="bg-theme-clr">Events</span>
             </h2>
           </div>
           <!-- Sec Title -->
           <div class="evnt-sec remove-ext5">
             <div class="row">
-              {% for event in events %}
-              <!-- Event -->
+              <!-- Event 1 -->
+
               <div class="col-md-4 col-sm-6 col-lg-4">
                 <div class="evnt-bx2">
+                  <div class="evnt-thmb">
+                    <!-- <a href="event-detail.html" title="" itemprop="url"> -->
+                    <!-- <img src="assets/images/resources/event-img1.jpg" alt="event-img1.jpg" itemprop="image"></a> -->
+                    <!-- <ul class="countdown text-center">
+                                        <li>
+                                            <span class="days">333</span>
+                                            <p class="days_ref">days</p>
+                                        </li>
+                                        <li>
+                                            <span class="hours">12</span>
+                                            <p class="hours_ref">hours</p>
+                                        </li>
+                                        <li>
+                                            <span class="minutes">59</span>
+                                            <p class="minutes_ref">min</p>
+                                        </li>
+                                        <li>
+                                            <span class="seconds">35</span>
+                                            <p class="seconds_ref">sec</p>
+                                        </li>
+                                    </ul> -->
+                    <!-- TODO: Add countdown until event-->
+                  </div>
                   <div class="evnt-inf">
-                    <h5>
-                      {{ event['title'] }}
+                    <h5 itemprop="headline">
+                      OSS Website
+                      <!-- <a href="event-detail.html" title="" itemprop="url">Emergency Medical Tips</a> -->
                     </h5>
-                    <p>
-                      {{ event['description'] }}
+                    <p itemprop="description">
+                      The launch of our website and a talk from guest speaker Rich.
                     </p>
                     <div class="pst-mta-wrp">
-                      <span class="evnt-dat">
-                        <a href="#" title="">{{ event['date']|format_date }}</a>
-                      </span>                      
+                      <span class="evnt-dat"
+                        ><a href="#" title="" itemprop="url"
+                          >5<i>Dec</i></a
+                        ></span
+                      >
                       <ul class="pst-mta">
                         <li>
-                          <i class="fas fa-map-marker-alt theme-clr"></i> {{ event['location']['name'] }}
+                          <i class="fas fa-map-marker-alt theme-clr"></i> FTC
+                          Floor 2
                         </li>
-                        {% if event['location'].get('address') %}
                         <li>
-                          {{ event['location']['address'] }}
-                        </li>
-                        {% endif %}
-                        {% if event['location'].get('url') %}
-                        <li>
-                          <a href="{{ event['location']['url'] }}" target="_blank">Join Online</a>
-                        </li>
-                        {% endif %}
-                        <li>
-                          <i class="far fa-clock theme-clr"></i> {{ event['time'] }}
+                          <i class="far fa-clock theme-clr"></i> 18:00 - 20:00
                         </li>
                       </ul>
                     </div>
+                    <!-- <a class="theme-btn" href="event-detail.html" title="" itemprop="url">View Detail</a> -->
+                    <!-- TODO: Add event open as dialogue or own page-->
                   </div>
                 </div>
               </div>
-              {% endfor %}
+
+              <!-- Event 2 -->
+
+              <div class="col-md-4 col-sm-6 col-lg-4">
+                <div class="evnt-bx2">
+                  <div class="evnt-thmb">
+                    <!-- <a href="event-detail.html" title="" itemprop="url"> -->
+                    <!-- <img src="assets/images/resources/event-img1.jpg" alt="event-img1.jpg" itemprop="image"></a> -->
+                    <!-- <ul class="countdown text-center">
+                                        <li>
+                                            <span class="days">333</span>
+                                            <p class="days_ref">days</p>
+                                        </li>
+                                        <li>
+                                            <span class="hours">12</span>
+                                            <p class="hours_ref">hours</p>
+                                        </li>
+                                        <li>
+                                            <span class="minutes">59</span>
+                                            <p class="minutes_ref">min</p>
+                                        </li>
+                                        <li>
+                                            <span class="seconds">35</span>
+                                            <p class="seconds_ref">sec</p>
+                                        </li>
+                                    </ul> -->
+                    <!-- TODO: Add countdown until event-->
+                  </div>
+                  <div class="evnt-inf">
+                    <h5 itemprop="headline">
+                      Pub Social
+                      <!-- <a href="event-detail.html" title="" itemprop="url">Emergency Medical Tips</a> -->
+                    </h5>
+                    <p itemprop="description">
+                      Come down to the pub with us to catch up. Drinking
+                      optional Capri-Suns available.
+                    </p>
+                    <div class="pst-mta-wrp">
+                      <span class="evnt-dat"
+                        ><a href="#" title="" itemprop="url"
+                          >6<i>Dec</i></a
+                        ></span
+                      >
+                      <ul class="pst-mta">
+                        <li>
+                          <i class="fas fa-map-marker-alt theme-clr"></i> The
+                          Fleet
+                        </li>
+                        <li>
+                          <i class="far fa-clock theme-clr"></i> 19:00 - 21:00
+                        </li>
+                      </ul>
+                    </div>
+                    <!-- <a class="theme-btn" href="event-detail.html" title="" itemprop="url">View Detail</a> -->
+                    <!-- TODO: Add event open as dialogue or own page-->
+                  </div>
+                </div>
+              </div>
+
+              <!-- Event 3 -->
+
+              <div class="col-md-4 col-sm-6 col-lg-4">
+                <div class="evnt-bx2">
+                  <div class="evnt-thmb">
+                    <!-- <a href="event-detail.html" title="" itemprop="url"> -->
+                    <!-- <img src="assets/images/resources/event-img1.jpg" alt="event-img1.jpg" itemprop="image"></a> -->
+                    <!-- <ul class="countdown text-center">
+                                        <li>
+                                            <span class="days">333</span>
+                                            <p class="days_ref">days</p>
+                                        </li>
+                                        <li>
+                                            <span class="hours">12</span>
+                                            <p class="hours_ref">hours</p>
+                                        </li>
+                                        <li>
+                                            <span class="minutes">59</span>
+                                            <p class="minutes_ref">min</p>
+                                        </li>
+                                        <li>
+                                            <span class="seconds">35</span>
+                                            <p class="seconds_ref">sec</p>
+                                        </li>
+                                    </ul> -->
+                    <!-- TODO: Add countdown until event-->
+                  </div>
+                  <div class="evnt-inf">
+                    <h5 itemprop="headline">
+                      Support Session
+                      <!-- <a href="event-detail.html" title="" itemprop="url">Emergency Medical Tips</a> -->
+                    </h5>
+                    <p itemprop="description">
+                      Need help with coursework or navigating university life?
+                      We're ready to assist you.
+                    </p>
+                    <div class="pst-mta-wrp">
+                      <span class="evnt-dat"
+                        ><a href="#" title="" itemprop="url"
+                          >13<i>Dec</i></a
+                        ></span
+                      >
+                      <ul class="pst-mta">
+                        <li>
+                          <i class="fas fa-map-marker-alt theme-clr"></i> FTC
+                          Floor 2
+                        </li>
+                        <li>
+                          <i class="far fa-clock theme-clr"></i> 18:00 - 20:00
+                        </li>
+                      </ul>
+                    </div>
+                    <!-- <a class="theme-btn" href="event-detail.html" title="" itemprop="url">View Detail</a> -->
+                    <!-- TODO: Add event open as dialogue or own page-->
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <!-- Events Sec -->
@@ -140,7 +274,7 @@
             <div class="col-span-2">
               <div class="bg-white shadow rounded-md text-center p-7">
                 <img
-                  src="/static/images/committee/Brendan.png"
+                  src="images/committee/Brendan.png"
                   alt="Picture of Brendan"
                   class="rounded-full shadow-md border-4 border-white h-28 w-28 mx-auto"
                 />
@@ -161,7 +295,7 @@
             <div class="col-span-2">
               <div class="bg-white shadow rounded-md text-center p-7">
                 <img
-                  src="/static/images/committee/Anna.jpg"
+                  src="images/committee/Anna.jpg"
                   alt=""
                   class="rounded-full shadow-md border-4 border-white h-28 w-28 mx-auto"
                 />
@@ -214,7 +348,7 @@
             <div class="col-span-2">
               <div class="bg-white shadow rounded-md text-center p-7">
                 <img
-                  src="/static/images/committee/keita.jpg"
+                  src="images/committee/keita.jpg"
                   alt="Picture of Keita"
                   class="rounded-full shadow-md border-4 border-white h-28 w-28 mx-auto"
                 />
@@ -274,7 +408,7 @@
             <div class="col-span-2">
               <div class="bg-white shadow rounded-md text-center p-7">
                 <img
-                  src="/static/images/committee/sam.jpg"
+                  src="images/committee/sam.jpg"
                   alt="Picture of Sam"
                   class="rounded-full shadow-md border-4 border-white h-28 w-28 mx-auto"
                 />
@@ -354,7 +488,7 @@
             <div class="col-span-2">
               <div class="bg-white shadow rounded-md text-center p-7">
                 <img
-                  src="/static/images/committee/mohammed.png"
+                  src="images/committee/mohammed.png"
                   alt=""
                   class="rounded-full shadow-md border-4 border-white h-28 w-28 mx-auto"
                 />
