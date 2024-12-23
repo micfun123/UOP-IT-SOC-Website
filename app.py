@@ -154,6 +154,16 @@ def news(pagenum):
     articles = articles[(pagenum-1)*5:pagenum*5]
     return render_template('news.html', articles=articles, pagenum=pagenum)
 
+@app.route('/rss')
+def rss():
+    articles = News.query.all()
+    articles = articles[::-1]
+    return render_template('rss.xml', articles=articles)
+
+@app.route('/article/<int:article_id>')
+def article(article_id):
+    article = News.query.get(article_id)
+    return render_template('article.html', article=article)
 
 
 if __name__ == '__main__':
