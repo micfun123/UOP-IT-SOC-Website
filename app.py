@@ -152,4 +152,11 @@ def admin_dashboard():
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()  #tables are created (I know fine dinning)
+        # Create an admin user if no users exist
+        if User.query.count() == 0:
+            admin = User(name='Admin', email=os.getenv('ADMIN_EMAIL'), hashed_password=bcrypt.hashpw(os.getenv('ADMIN_PASSWORD').encode('utf-8'), bcrypt.gensalt()).decode('utf-8'), is_admin=True, is_verified=True,class_of='000',level='ADMIN',role='admin',image='default.jpg')
+            db.session.add(admin)
+            db.session.commit()
+
+
     app.run(debug=True)
