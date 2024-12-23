@@ -21,3 +21,5 @@ We welcome contributions from all members of the IT Society. Please follow these
 3.  Make your changes
 4.  Submit a pull request
 
+## Set up
+A env file is needed. make a `.env` file in the main directory of the project add add `SECRET_KEY = <key here>`
