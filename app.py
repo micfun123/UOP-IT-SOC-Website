@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, url_for, session, flash
+from flask import Flask, request, render_template, redirect, url_for, session, flash, Response
 import json
 import os
 import dotenv
@@ -169,7 +169,7 @@ def news(pagenum):
 def rss():
     articles = News.query.all()
     articles = articles[::-1]
-    return render_template('rss.xml', articles=articles)
+    return Response(render_template('rss.xml', articles=articles), mimetype='text/xml')
 
 @app.route('/article/<int:article_id>')
 def article(article_id):
