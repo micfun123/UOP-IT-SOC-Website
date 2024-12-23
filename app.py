@@ -176,6 +176,43 @@ def article(article_id):
     article = News.query.get(article_id)
     return render_template('article.html', article=article)
 
+@app.route('/manage_news', methods=['GET', 'POST'])
+@login_required
+def manage_news():
+    if request.method == 'POST':
+        action = request.form.get('action')
+
+        # Add a new article
+        if action == 'add':
+            title = request.form.get('title')
+            content = request.form.get('content')
+            user_id = session['user_id']
+
+            new_article = News(title=title, content=content, date_posted=datetime.now(), user_id=user_id)
+            try:
+                db.session.add(new_article)
+                db.session.commit()
+                flash('Article added successfully!', 'success')
+            except Exception as e:
+                db.session.rollback()
+                flash(f'Error: {str(e)}', 'danger')
+
+        # Delete an article
+        elif action == 'delete':
+            article_id = request.form.get('article_id')
+            article = News.query.get(article_id)
+            if article:
+                try:
+                    db.session.delete(article)
+                    db.session.commit()
+                    flash('Article deleted successfully!', 'success')
+                except Exception as e:
+                    db.session.rollback()
+                    flash(f'Error: {str(e)}', 'danger')
+
+    articles = News.query.order_by(News.date_posted.desc()).all()
+    return render_template('manage_news.html', articles=articles)
+
 
 if __name__ == '__main__':
     with app.app_context():
