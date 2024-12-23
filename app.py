@@ -149,10 +149,21 @@ def admin_dashboard():
 
 @app.route('/news/<int:pagenum>')
 def news(pagenum):
-    articles = News.query.all()
-    articles = articles[::-1]
-    articles = articles[(pagenum-1)*5:pagenum*5]
+    articles = News.query.order_by(News.date_posted.desc()).all()
+    
+    # Pagination logic: limit articles per page
+    per_page = 5
+    total_articles = len(articles)
+    start_idx = (pagenum - 1) * per_page
+    end_idx = start_idx + per_page
+    articles = articles[start_idx:end_idx]
+
+    # Handle edge case where page number exceeds available pages
+    if pagenum < 1 or start_idx >= total_articles:
+        return redirect('/news/1')
+
     return render_template('news.html', articles=articles, pagenum=pagenum)
+
 
 @app.route('/rss')
 def rss():
