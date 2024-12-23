@@ -22,6 +22,12 @@ We welcome contributions from all members of the IT Society. Please follow these
 4.  Submit a pull request
 
 ## Set up
+
+First run
+`pip install -r requirements.txt`
+
+then
+
 A env file is needed. make a `.env` file in the main directory of the project add add `SECRET_KEY = <key here>`
 if there are no users a admin account is needed. to do this add ADMIN_EMAIL = <email> and ADMIN_PASSWORD = <password> to the `.env` file.
 (these are needed for the first time the project is run please create a superuser account from the admin panel)
