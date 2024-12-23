@@ -1,9 +1,12 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect, url_for, session, flash
 import json
 import os
 import dotenv
 from datetime import datetime
 from models import db, User
+import random
+import string
+import bcrypt
 
 dotenv.load_dotenv()
 
@@ -12,10 +15,54 @@ app.secret_key = os.getenv('SECRET_KEY')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 db.init_app(app)
 
+# Function to generate a random password
+def generate_random_password(length=12):
+    characters = string.ascii_letters + string.digits + string.punctuation
+    return ''.join(random.choices(characters, k=length))
+
 # Custom Jinja2 filter
 @app.template_filter('format_date')
 def format_date(value, format='%d %b'):
     return datetime.strptime(value, '%Y-%m-%d').strftime(format)
+
+# Ensure user is logged in and is an admin
+def login_required(func):
+    from functools import wraps
+
+    @wraps(func)
+    def decorated_view(*args, **kwargs):
+        if 'user_id' not in session:
+            flash('You must be logged in to access this page.', 'danger')
+            return redirect(url_for('login'))
+        user = User.query.get(session['user_id'])
+        if not user or not user.is_admin:
+            flash('You are not authorized to access this page.', 'danger')
+            return redirect(url_for('index'))
+        return func(*args, **kwargs)
+
+    return decorated_view
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
+
+        user = User.query.filter_by(email=email).first()
+        if user and bcrypt.checkpw(password.encode('utf-8'), user.hashed_password.encode('utf-8')):
+            session['user_id'] = user.id
+            flash('Login successful!', 'success')
+            return redirect(url_for('index'))
+        else:
+            flash('Invalid email or password.', 'danger')
+    
+    return render_template('login.html')
+
+@app.route('/logout')
+def logout():
+    session.pop('user_id', None)
+    flash('You have been logged out.', 'success')
+    return redirect(url_for('index'))
 
 @app.route('/')
 def index():
@@ -31,7 +78,78 @@ def members():
     members = User.query.all()
     return render_template('members.html', members=members)
 
+@app.route('/admin', methods=['GET', 'POST'])
+@login_required
+def admin_dashboard():
+    if request.method == 'POST':
+        action = request.form.get('action')
+        
+        # Add a new member
+        if action == 'add':
+            name = request.form.get('name')
+            email = request.form.get('email')
+            class_of = request.form.get('class_of')
+            level = request.form.get('level')
+            is_admin = request.form.get('is_admin')
+            role = request.form.get('role')
+
+
+            is_admin = is_admin == 'on'
+
+
+            # Generate a random password
+            raw_password = generate_random_password()
+            hashed_password = bcrypt.hashpw(raw_password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+
+            # Create a new user
+            if role:
+                new_user = User(name=name,
+                                email=email,
+                                hashed_password=hashed_password,
+                                class_of=class_of,
+                                level=level,
+                                role=role,
+                                is_verified=True,
+                                image='default.jpg',
+                                is_admin=is_admin)
+            else:
+                new_user = User(name=name,
+                                email=email,
+                                hashed_password=hashed_password,
+                                class_of=class_of,
+                                level=level,
+                                is_verified=True,
+                                image='default.jpg',
+                                is_admin=is_admin)
+                
+            try:
+                db.session.add(new_user)
+                db.session.commit()
+                flash(f'New member added! Their password is: {raw_password}', 'success')
+            except Exception as e:
+                db.session.rollback()
+                flash(f'Error: {str(e)}', 'danger')
+
+        # Delete a member
+        elif action == 'delete':
+            user_id = request.form.get('user_id')
+            user = User.query.get(user_id)
+            if user:
+                try:
+                    db.session.delete(user)
+                    db.session.commit()
+                    flash(f'Member {user.name} deleted successfully!', 'success')
+                except Exception as e:
+                    db.session.rollback()
+                    flash(f'Error: {str(e)}', 'danger')
+
+    members = User.query.all()
+    return render_template('admin.html', members=members)
+
+
+
+
 if __name__ == '__main__':
     with app.app_context():
-        db.create_all()  # Ensure tables are created
+        db.create_all()  #tables are created (I know fine dinning)
     app.run(debug=True)
