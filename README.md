@@ -39,4 +39,8 @@ ADMIN_EMAIL=admin@staff.com
 ADMIN_PASSWORD=test123
 ```
 
+## Doucmentation
+
+flask documentation: https://flask.palletsprojects.com/en/2.0.x/
+Python documentation: https://docs.python.org/3.12/
 
