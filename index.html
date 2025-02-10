@@ -52,6 +52,66 @@
     <link rel="stylesheet" href="styles/events/events.responsiveness.css" />
     <link rel="stylesheet" href="styles/events/colours.css" />
   </head>
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      fetch('events.json')
+        .then(response => response.json())
+        .then(events => {
+          // Sort events by date
+          events.sort((a, b) => new Date(a.date) - new Date(b.date));
+  
+          // Get the current date
+          const currentDate = new Date();
+  
+          // Filter out past events and get the next 3 upcoming events
+          const upcomingEvents = events.filter(event => new Date(event.date) >= currentDate).slice(0, 3);
+  
+          // Get the container where events will be inserted
+          const eventsContainer = document.getElementById('events-container');
+  
+          // Loop through the upcoming events and create HTML for each
+          upcomingEvents.forEach(event => {
+            const eventDate = new Date(event.date);
+            const month = eventDate.toLocaleString('default', { month: 'short' });
+            const day = eventDate.getDate();
+  
+            const eventHtml = `
+              <div class="col-md-4 col-sm-6 col-lg-4">
+                <div class="evnt-bx2">
+                  <div class="evnt-thmb">
+                    <!-- Add countdown or image here if needed -->
+                  </div>
+                  <div class="evnt-inf">
+                    <h5 itemprop="headline">${event.title}</h5>
+                    <p itemprop="description">${event.description}</p>
+                    <div class="pst-mta-wrp">
+                      <span class="evnt-dat">
+                        <a href="#" title="" itemprop="url">${day}<i>${month}</i></a>
+                      </span>
+                      <ul class="pst-mta">
+                        <li>
+                          <i class="fas fa-map-marker-alt theme-clr"></i> ${event.location}
+                        </li>
+                        <li>
+                          <i class="far fa-clock theme-clr"></i> ${event.time}
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `;
+  
+            // Insert the event HTML into the container
+            eventsContainer.insertAdjacentHTML('beforeend', eventHtml);
+          });
+        })
+        .catch(error => console.error('Error loading events:', error));
+    });
+  </script>
+
   <body>
     <nav id="primary-menu" class="navbar">
       <div class="container">
@@ -166,181 +226,11 @@
               Upcoming <span class="bg-theme-clr">Events</span>
             </h2>
           </div>
-          <!-- Sec Title -->
           <div class="evnt-sec remove-ext5">
-            <div class="row">
-              <!-- Event 1 -->
-
-              <div class="col-md-4 col-sm-6 col-lg-4">
-                <div class="evnt-bx2">
-                  <div class="evnt-thmb">
-                    <!-- <a href="event-detail.html" title="" itemprop="url"> -->
-                    <!-- <img src="assets/images/resources/event-img1.jpg" alt="event-img1.jpg" itemprop="image"></a> -->
-                    <!-- <ul class="countdown text-center">
-                                        <li>
-                                            <span class="days">333</span>
-                                            <p class="days_ref">days</p>
-                                        </li>
-                                        <li>
-                                            <span class="hours">12</span>
-                                            <p class="hours_ref">hours</p>
-                                        </li>
-                                        <li>
-                                            <span class="minutes">59</span>
-                                            <p class="minutes_ref">min</p>
-                                        </li>
-                                        <li>
-                                            <span class="seconds">35</span>
-                                            <p class="seconds_ref">sec</p>
-                                        </li>
-                                    </ul> -->
-                    <!-- TODO: Add countdown until event-->
-                  </div>
-                  <div class="evnt-inf">
-                    <h5 itemprop="headline">
-                      Game Night
-                      <!-- <a href="event-detail.html" title="" itemprop="url">Emergency Medical Tips</a> -->
-                    </h5>
-                    <p itemprop="description">
-                      Get to know the Society and members better with a relaxed afternoon of games.
-                    </p>
-                    <div class="pst-mta-wrp">
-                      <span class="evnt-dat"
-                        ><a href="#" title="" itemprop="url"
-                          >30<i>Jan</i></a
-                        ></span
-                      >
-                      <ul class="pst-mta">
-                        <li>
-                          <i class="fas fa-map-marker-alt theme-clr"></i> FTC
-                          Floor 2
-                        </li>
-                        <li>
-                          <i class="far fa-clock theme-clr"></i> 18:00 - 20:00
-                        </li>
-                      </ul>
-                    </div>
-                    <!-- <a class="theme-btn" href="event-detail.html" title="" itemprop="url">View Detail</a> -->
-                    <!-- TODO: Add event open as dialogue or own page-->
-                  </div>
-                </div>
-              </div>
-
-              <!-- Event 2 -->
-
-              <div class="col-md-4 col-sm-6 col-lg-4">
-                <div class="evnt-bx2">
-                  <div class="evnt-thmb">
-                    <!-- <a href="event-detail.html" title="" itemprop="url"> -->
-                    <!-- <img src="assets/images/resources/event-img1.jpg" alt="event-img1.jpg" itemprop="image"></a> -->
-                    <!-- <ul class="countdown text-center">
-                                        <li>
-                                            <span class="days">333</span>
-                                            <p class="days_ref">days</p>
-                                        </li>
-                                        <li>
-                                            <span class="hours">12</span>
-                                            <p class="hours_ref">hours</p>
-                                        </li>
-                                        <li>
-                                            <span class="minutes">59</span>
-                                            <p class="minutes_ref">min</p>
-                                        </li>
-                                        <li>
-                                            <span class="seconds">35</span>
-                                            <p class="seconds_ref">sec</p>
-                                        </li>
-                                    </ul> -->
-                    <!-- TODO: Add countdown until event-->
-                  </div>
-                  <div class="evnt-inf">
-                    <h5 itemprop="headline">
-                      Hackathon Start
-                      <!-- <a href="event-detail.html" title="" itemprop="url">Emergency Medical Tips</a> -->
-                    </h5>
-                    <p itemprop="description">
-                      Welcome to the start of our 3 week long hackathon. Get ready to code, making something cool and general chaos.
-                    </p>
-                    <div class="pst-mta-wrp">
-                      <span class="evnt-dat"
-                        ><a href="#" title="" itemprop="url"
-                          >6<i>Feb</i></a
-                        ></span
-                      >
-                      <ul class="pst-mta">
-                        <li>
-                          <i class="fas fa-map-marker-alt theme-clr"></i> FTC
-                          Floor 2
-                        </li>
-                        <li>
-                          <i class="far fa-clock theme-clr"></i> 18:00 - 20:00
-                        </li>
-                      </ul>
-                    </div>
-                    <!-- <a class="theme-btn" href="event-detail.html" title="" itemprop="url">View Detail</a> -->
-                    <!-- TODO: Add event open as dialogue or own page-->
-                  </div>
-                </div>
-              </div>
-
-              <!-- Event 3 -->
-
-              <div class="col-md-4 col-sm-6 col-lg-4">
-                <div class="evnt-bx2">
-                  <div class="evnt-thmb">
-                    <!-- <a href="event-detail.html" title="" itemprop="url"> -->
-                    <!-- <img src="assets/images/resources/event-img1.jpg" alt="event-img1.jpg" itemprop="image"></a> -->
-                    <!-- <ul class="countdown text-center">
-                                        <li>
-                                            <span class="days">333</span>
-                                            <p class="days_ref">days</p>
-                                        </li>
-                                        <li>
-                                            <span class="hours">12</span>
-                                            <p class="hours_ref">hours</p>
-                                        </li>
-                                        <li>
-                                            <span class="minutes">59</span>
-                                            <p class="minutes_ref">min</p>
-                                        </li>
-                                        <li>
-                                            <span class="seconds">35</span>
-                                            <p class="seconds_ref">sec</p>
-                                        </li>
-                                    </ul> -->
-                    <!-- TODO: Add countdown until event-->
-                  </div>
-                  <div class="evnt-inf">
-                    <h5 itemprop="headline">
-                      PUB MEET UP
-                      <!-- <a href="event-detail.html" title="" itemprop="url">Emergency Medical Tips</a> -->
-                    </h5>
-                    <p itemprop="description">
-                      Come and join us for the bi-weekly drink and a chat at a local pub.
-                    </p>
-                    <div class="pst-mta-wrp">
-                      <span class="evnt-dat"
-                        ><a href="#" title="" itemprop="url"
-                          >13<i>Dec</i></a
-                        ></span
-                      >
-                      <ul class="pst-mta">
-                        <li>
-                          <i class="fas fa-map-marker-alt theme-clr"></i> CLASSIFIED
-                        </li>
-                        <li>
-                          <i class="far fa-clock theme-clr"></i> 19:00 - ???
-                        </li>
-                      </ul>
-                    </div>
-                    <!-- <a class="theme-btn" href="event-detail.html" title="" itemprop="url">View Detail</a> -->
-                    <!-- TODO: Add event open as dialogue or own page-->
-                  </div>
-                </div>
-              </div>
+            <div class="row" id="events-container">
+              <!-- Events will be dynamically inserted here -->
             </div>
           </div>
-          <!-- Events Sec -->
         </div>
       </div>
     </section>
