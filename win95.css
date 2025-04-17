@@ -77,6 +77,14 @@ input, textarea, select {
 	gap: 20px;
 }
 
+.menu-bar a {
+	text-decoration: none;
+}
+
+.menu-bar a:visited {
+	color: #000000
+}
+
 .menu-item {
 	cursor: pointer;
 	padding: 4px 6px;
