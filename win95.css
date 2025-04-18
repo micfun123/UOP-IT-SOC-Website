@@ -1,12 +1,19 @@
+
+@font-face {
+	font-family: 'custom-local-font';
+	src: url('./W95FA.otf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
 body {
 	background-color: #008080;
-	font-family: 'Segoe UI', Tahoma, sans-serif;
 	margin: 0;
 	padding: 0;
 	min-height: 100vh;
 	overflow-y: auto;
-  }
-  
+	font-family: 'Segoe UI', Tahoma, sans-serif;
+} 
   
 .window {
 	background-color: #ffffff;
@@ -27,6 +34,7 @@ body {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	font-family: 'custom-local-font', sans-serif;
 }
 
 .title-bar-buttons {
@@ -74,7 +82,8 @@ input, textarea, select {
 	padding: 6px 10px;
 	border-bottom: 2px solid #808080;
 	font-size: 18px;
-	gap: 20px;
+	gap: 20px;	
+	font-family: 'custom-local-font', sans-serif;
 }
 
 .menu-bar a {
