@@ -1,4 +1,3 @@
-
 @font-face {
 	font-family: 'custom-local-font';
 	src: url('./W95FA.otf') format('truetype');
@@ -13,16 +12,23 @@ body {
 	min-height: 100vh;
 	overflow-y: auto;
 	font-family: 'custom-local-font', 'Segoe UI', Tahoma, sans-serif;
-} 
-  
+}
+
 .window {
 	background-color: #ffffff;
 	border: 3px solid #000000;
 	box-shadow: inset -3px -3px #ffffff, inset 3px 3px #808080;
-	padding: 20px;
+	padding: 0;
 	margin: 40px auto;
 	width: 800px;
 	max-width: 90%;
+	overflow: hidden;
+}
+
+.title-bar,
+.menu-bar {
+	width: 100%;
+	box-sizing: border-box;
 }
 
 .title-bar {
@@ -33,7 +39,7 @@ body {
 	font-weight: bold;
 	display: flex;
 	justify-content: space-between;
-	align-items: center;	
+	align-items: center;
 }
 
 .title-bar-buttons {
@@ -52,6 +58,38 @@ body {
 	cursor: pointer;
 }
 
+.menu-bar {
+	display: flex;
+	background-color: #c0c0c0;
+	padding: 6px 12px;
+	border-bottom: 2px solid #808080;
+	font-size: 18px;
+	gap: 20px;
+	font-family: 'custom-local-font', sans-serif;
+}
+
+.menu-bar a {
+	text-decoration: none;
+}
+
+.menu-bar a:visited {
+	color: #000000;
+}
+
+.menu-item {
+	cursor: pointer;
+	padding: 4px 6px;
+}
+
+.menu-item:hover {
+	background-color: navy;
+	color: white;
+}
+
+.content {
+	padding: 20px;
+}
+
 .button {
 	background-color: #c0c0c0;
 	border: 3px outset #fff;
@@ -65,7 +103,9 @@ body {
 	border: 3px inset #808080;
 }
 
-input, textarea, select {
+input,
+textarea,
+select {
 	border: 3px inset #808080;
 	background-color: #ffffff;
 	font-size: 18px;
@@ -73,34 +113,6 @@ input, textarea, select {
 	margin-top: 10px;
 	width: 100%;
 	box-sizing: border-box;
-}
-
-.menu-bar {
-	display: flex;
-	background-color: #c0c0c0;
-	padding: 6px 10px;
-	border-bottom: 2px solid #808080;
-	font-size: 18px;
-	gap: 20px;	
-	font-family: 'custom-local-font', sans-serif;
-}
-
-.menu-bar a {
-	text-decoration: none;
-}
-
-.menu-bar a:visited {
-	color: #000000
-}
-
-.menu-item {
-	cursor: pointer;
-	padding: 4px 6px;
-}
-
-.menu-item:hover {
-	background-color: navy;
-	color: white;
 }
 
 .committee-list {
@@ -123,7 +135,7 @@ input, textarea, select {
 	box-shadow: inset -2px -2px #ffffff, inset 2px 2px #808080;
 	padding: 12px;
 	margin-bottom: 12px;
-  }
+}
 
 .event-title {
 	font-weight: bold;
@@ -144,20 +156,19 @@ input, textarea, select {
 	margin-top: 8px;
 	font-size: 16px;
 }
-  
+
 .link-list a {
 	color: black;
 	text-decoration: underline;
 	margin-right: 8px;
 }
-  
+
 .link-list a:visited {
 	color: black;
 }
-  
+
 .link-list a:hover {
 	background-color: navy;
 	color: white;
 	text-decoration: underline;
 }
-  
