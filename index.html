@@ -93,6 +93,70 @@
     </div>
   </div>
 
+  <div id="popup">
+    <div class="popup-content">
+      <div class="achievement">
+        <span class="circle">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span class="logo"></span>
+        </span>
+        <span class="text"><b>Achievement unlocked</b><br/>
+        why are you here?</span>
+    </div>
+      <button id="closeBtn">Close</button>
+    </div>
+  </div>
+  
   <script src="events.js"></script>
+
+  
+<script>
+  const popup = document.getElementById('popup');
+  const closeBtn = document.getElementById('closeBtn');
+
+  const konamiCode = [
+    'ArrowUp', 'ArrowUp',
+    'ArrowDown', 'ArrowDown',
+    'ArrowLeft', 'ArrowRight',
+    'ArrowLeft', 'ArrowRight',
+    'b', 'a'
+  ];
+
+  let inputSequence = [];
+
+  window.addEventListener('keydown', function(e) {
+    inputSequence.push(e.key);
+
+    // Only keep last N keys
+    if (inputSequence.length > konamiCode.length) {
+      inputSequence.shift();
+    }
+
+    // Check if sequence matches
+    if (inputSequence.join('') === konamiCode.join('')) {
+      popup.style.display = 'flex';
+      setTimeout(function(){
+        //popout
+        document.getElementsByClassName("achievement")[0].className = "achievement out";
+        //play the sound (not sure about the timing)
+          var audio = new Audio('https://centracomm.cachefly.net/majornelson/2007/Achievement-mp3-sound.mp3');
+          audio.play();
+      }, 1000);
+    }
+  });
+
+
+  closeBtn.addEventListener('click', () => {
+    popup.style.animation = 'popupFadeOut 0.5s ease forwards';
+    setTimeout(() => {
+      popup.style.display = 'none';
+      popup.style.animation = 'popupFadeIn 0.5s ease forwards'; // Reset animation for next time
+    }, 500);
+  });
+</script>
+
 </body>
 </html>
