@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>UOP IT Society</title>
+  <link rel="stylesheet" href="win95.css">
+</head>
+<body>
+
+  <div class="window">
+    <div class="title-bar">
+      <span>UOP IT Society - Homepage</span>
+      <div class="title-bar-buttons">
+        <div class="title-bar-button">_</div>
+        <div class="title-bar-button">☐</div>
+        <div class="title-bar-button">✕</div>
+      </div>
+    </div>
+
+    <div class="menu-bar">
+      <div class="menu-item">Home</div>
+      <div class="menu-item">Committee</div>
+      <div class="menu-item">Events</div>
+      <div class="menu-item">About</div>
+      <a href="https://discord.gg/B2pVEvWZW5"><div class="menu-item">Discord</div></a>
+      <a href ="https://www.instagram.com/theitsoc/" ><div class="menu-item">Instagram</div></a>
+    </div>
+
+    <div class="content">
+      <h2>Welcome to the UOP IT Society</h2>
+      <p>The place to be for all things computing.</p>
+
+      <h3>About The IT Society</h3>
+      <p>The IT Society is an academic and social group aimed at supporting students who are taking a computing-based course or are interested in learning about IT. We run sessions covering all disciplines, from coding to cyber security to networking, we have something for everyone. We meet every Thursday in the FTC building and have bi-weekly socials on a Friday. In our sessions, we run a number of workshops, talks, and events throughout the year.</p>
+
+      <h4>Regular Activities</h4>
+      <ul>
+        <li>Hackathons</li>
+        <li>Capture the flag</li>
+        <li>Talks from industry</li>
+        <li>Support sessions</li>
+        <li>Learning a skill night</li>
+      </ul>
+
+
+      <h4>Upcoming Events</h4>
+      <div id="events-container">
+        <p>Loading events...</p>
+      </div>
+
+      <h4>Our Current Committee</h4>
+      <ul class="committee-list">
+        
+        <li class="committee-item">
+          <strong>Michael Parker</strong> - President<br>
+          Computer Science 2st Year<br>
+          He/Him<br>
+          Likes open source stuff<br>
+          <div class="link-list">
+            <a href="https://www.linkedin.com/in/michaelrbparker/" target="_blank">LinkedIn</a> |
+            <a href="https://github.com/micfun123" target="_blank">GitHub</a> |
+            <a href="mailto:up2263259@myport.ac.uk">Email</a> |
+            <a href="https://www.michaelrbparker.com" target="_blank">Website</a>
+          </div>
+        </li>
+
+
+        <li class="committee-item"><strong>Sam Blewitt</strong> - Events Secretary<br>
+          Computer Science 3nd Year<br>
+          He/Him<br>⚠ Will not stop talking about planes ⚠
+          <br> <div class="link-list">
+            <a href="https://www.linkedin.com/in/sam-blewitt/" target="_blank">LinkedIn</a> |
+            <a href="https://www.sambot.dev/" target="_blank">Website</a> |
+            <a href="https://github.com/wotanuts" target="_blank">GitHub</a>
+        </li>
+
+        <li class="committee-item"><strong>Anna Rejlová</strong> - Treasurer<br>
+          Computer Science 2nd Year<br>
+          He/She/They<br>Place Holder
+          <br> <div class="link-list">
+            <a href="https://www.linkedin.com/in/anirejlova/" target="_blank">LinkedIn</a> |
+            <a href="https://github.com/anirejlova" target="_blank">GitHub</a>
+        </li>
+
+        <li class="committee-item"><strong>Scarlett</strong> - Welfare<br>
+          Computer Science 2nd Year<br>
+          She/Her<br>Place Holder
+          <br> <div class="link-list">
+            <a href="https://www.linkedin.com/in/anirejlova/" target="_blank">LinkedIn</a> |
+            <a href="https://github.com/anirejlova" target="_blank">GitHub</a>
+        </li>
+              
+
+      </ul>
+    </div>
+  </div>
+
+  <div id="popup">
+    <div class="popup-content">
+      <div class="achievement">
+        <span class="circle">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span class="logo"></span>
+        </span>
+        <span class="text"><b>Achievement unlocked</b><br/>
+        How did we get here?</span>
+    </div>
+      <button id="closeBtn">Close</button>
+    </div>
+  </div>
+  
+  <script src="events.js"></script>
+
+  
+<script>
+  const popup = document.getElementById('popup');
+  const closeBtn = document.getElementById('closeBtn');
+
+  const konamiCode = [
+    'ArrowUp', 'ArrowUp',
+    'ArrowDown', 'ArrowDown',
+    'ArrowLeft', 'ArrowRight',
+    'ArrowLeft', 'ArrowRight',
+    'b', 'a'
+  ];
+
+  let inputSequence = [];
+
+  window.addEventListener('keydown', function(e) {
+    inputSequence.push(e.key);
+
+    // Only keep last N keys
+    if (inputSequence.length > konamiCode.length) {
+      inputSequence.shift();
+    }
+
+    // Check if sequence matches
+    if (inputSequence.join('') === konamiCode.join('')) {
+      popup.style.display = 'flex';
+      setTimeout(function(){
+        //popout
+        document.getElementsByClassName("achievement")[0].className = "achievement out";
+        //play the sound (not sure about the timing)
+          const audio = new Audio('https://centracomm.cachefly.net/majornelson/2007/Achievement-mp3-sound.mp3');
+          audio.play();
+      }, 1000);
+    }
+  });
+
+
+  closeBtn.addEventListener('click', () => {
+    popup.style.animation = 'popupFadeOut 0.5s ease forwards';
+    setTimeout(() => {
+      popup.style.display = 'none';
+      popup.style.animation = 'popupFadeIn 0.5s ease forwards'; // Reset animation for next time
+    }, 500);
+  });
+</script>
+
+</body>
+</html>
