@@ -6,6 +6,8 @@
   font-style: normal;
 }
 
+
+
 body {
   background-color: #008080;
   margin: 0;
@@ -393,4 +395,36 @@ select {
 @keyframes popupFadeOut {
   from { opacity: 1; }
   to { opacity: 0; }
+}
+
+.image-container {
+  border: 3px inset #808080; 
+  background-color: #fff;
+  padding: 4px;
+  display: inline-block; 
+}
+
+.image-container img {
+  display: block;
+  margin: 0 auto; /* Centers horizontally */
+  max-width: 100%; /* Keeps it responsive */
+  height: auto; /* Maintains aspect ratio */
+}
+
+
+#slideshow-container {
+  max-width: 500px; 
+  margin: 15px auto; 
+}
+
+#slideshow-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+#image-counter {
+  font-family: 'custom-local-font', sans-serif;
+  font-size: 16px;
 }

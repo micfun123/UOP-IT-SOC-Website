@@ -58,10 +58,22 @@
       </ul>
 
 
-      <h4>Upcoming Events</h4>
+    <h4>Upcoming Events</h4>
       <div id="events-container">
         <p>Loading events...</p>
       </div>
+
+    <h4>Past Events</h4>
+    <div id="slideshow-container">
+      <div class="image-container">
+        <img id="slideshow-image" src="static/images/your-photo-1.jpg" alt="A photo of the IT society members">
+      </div>
+      <div id="slideshow-controls">
+        <button id="prev-btn" class="button">&lt; Prev</button>
+        <span id="image-counter">Image 1 / 5</span>
+        <button id="next-btn" class="button">Next &gt;</button>
+      </div>
+    </div>
 
       <h4>Our Current Committee</h4>
       <ul class="committee-list">
@@ -187,6 +199,50 @@
   </div>
   <p>© 2025 UOP IT Society. All rights reserved.</p>
 </footer>
+
+<script>
+  // Wait for the document to be fully loaded before running the script
+  document.addEventListener('DOMContentLoaded', () => {
+    
+    const images = [
+      'static/images/bbq.jpg',
+      'static/images/boardgame.jpg',
+      'static/images/learngit.png',
+      'static/images/christmas_dinner.jpg',
+      'static/images/boardgame.jpg'
+    ];
+
+    const slideshowImage = document.getElementById('slideshow-image');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const imageCounter = document.getElementById('image-counter');
+
+    let currentIndex = 0;
+
+    // --- Core Function to Display an Image ---
+    function showImage(index) {
+      slideshowImage.src = images[index];
+      imageCounter.textContent = `Image ${index + 1} / ${images.length}`;
+    }
+
+    // --- Event Listeners for Buttons ---
+    nextBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % images.length;
+      showImage(currentIndex);
+    });
+
+    prevBtn.addEventListener('click', () => {
+      if (currentIndex === 0) {
+        currentIndex = images.length - 1;
+      } else {
+        currentIndex = currentIndex - 1;
+      }
+      showImage(currentIndex);
+    });
+
+    showImage(currentIndex);
+  });
+</script>
 
 </body>
 </html>
