@@ -397,6 +397,10 @@ select {
   to { opacity: 0; }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 
 .image-container {
   border: 3px inset #808080;
