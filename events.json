@@ -1,21 +1,27 @@
 [
     {
-      "title": "Hacktoberfest Kickoff",
-      "date": "2025-04-22",
-      "location": "FTC 3.01",
-      "description": "Intro to open source, GitHub, and how to participate in Hacktoberfest."
+      "title": "Treasure Hunt",
+      "date": "2025-10-02",
+      "location": "Tree Outside of the Library at 5:45",
+      "description": "Get to know the city, meet some great people and discover some lesser known facts of the city."
     },
     {
-      "title": "CTF Night",
-      "date": "2025-05-03",
-      "location": "FTC 4.10",
-      "description": "Beginner-friendly capture the flag with snacks!"
+      "title": "Board Games Night",
+      "date": "2025-10-10",
+      "location": "Dice Board Game Lounge",
+      "description": "Join us for a fun evening of board games!"
     },
     {
-      "title": "Tech Talk with IBM",
-      "date": "2025-05-15",
-      "location": "Richmond Building",
-      "description": "Come listen to professionals from IBM talk about careers and AI."
+      "title": "Coding for non-coders",
+      "date": "2025-05-14",
+      "location": "FTC 2",
+      "description": "Get to learn the basics of python that can be applied in various fields, and data science."
+    },
+    {
+      "title": "Coding for non-coders",
+      "date": "2025-05-21",
+      "location": "FTC 2",
+      "description": "Get to learn the basics of python that can be applied in various fields, and data science."
     }
   ]
   
