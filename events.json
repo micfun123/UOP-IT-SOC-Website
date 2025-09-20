@@ -14,14 +14,26 @@
     {
       "title": "Coding for non-coders",
       "date": "2025-10-14",
-      "location": "FTC 2",
+      "location": "BK0.07",
       "description": "Get to learn the basics of python that can be applied in various fields, and data science."
+    },
+    {
+      "title": "Lighting Talks",
+      "date": "2025-10-16",
+      "location": "FTC 2",
+      "description": "A series of short, engaging talks on a variety of topics."
     },
     {
       "title": "Coding for non-coders",
       "date": "2025-10-21",
-      "location": "FTC 2",
+      "location": "BK0.07",
       "description": "Get to learn the basics of python that can be applied in various fields, and data science."
+    },
+    {
+      "title": "Try hack me CTF",
+      "date": "2025-10-24",
+      "location": "To Be Decided",
+      "description": " FREE PIZZA, A Capture The Flag event focused on cybersecurity challenges."
     }
   ]
   
