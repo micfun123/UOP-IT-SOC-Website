@@ -438,3 +438,12 @@ html {
   font-family: 'custom-local-font', sans-serif;
   font-size: 16px;
 }
+
+button {
+  background-color: #c0c0c0;
+  border: 3px outset #fff;
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 15px;
+}
